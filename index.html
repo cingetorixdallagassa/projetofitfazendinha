@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Fit Fazendinha</title>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.4.3/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+
+</head>
+<style></style>
+<body>
+    <div id="app">
+        <v-app>
+            <v-img
+            src="capa.png"
+            width="100%"
+            max-height="100%"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" 
+        ></v-img>
+
+        
+            <v-app-bar-nav-icon @click="toggleDrawer">
+                <v-icon>mdi-menu</v-icon>
+              </v-app-bar-nav-icon>
+              
+    
+          
+            <sidebar-menu :model-value="drawer" @update:model-value="updateDrawer" :navigate="navigate"></sidebar-menu>
+            <content-page :page="currentPage"></content-page>
+        </v-app>
+    </div>
+    
+        
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+     
+        <script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.3/dist/vuetify.min.js"></script>
+
+    <script>
+const { createApp } = Vue;
+
+const app = createApp({
+    data() {
+        return {
+            drawer: true, 
+            currentPage: 'nutrition'
+        };
+    },
+    methods: {
+        navigate(page) {
+            this.currentPage = page;
+            this.drawer = false; 
+        },
+        toggleDrawer() {
+            this.drawer = !this.drawer; 
+        },
+        updateDrawer(value) {
+            this.drawer = value;
+        }
+    }
+});
+
+app.component('sidebar-menu', {
+    template: `
+       <v-navigation-drawer :value="drawer" @update:modelValue="$emit('update:drawer', $event)" app>
+            <v-list>
+                <v-list-item @click="navigate('nutrition')">
+                    <v-list-item-title>Receitas fit</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="navigate('exercises')">
+                    <v-list-item-title>Musculação</v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
+    `,
+    props: {
+        drawer: Boolean,
+        navigate: Function
+    }
+});
+
+
+app.component('content-page', {
+    template: `
+    </v-card>
+        <v-main class="grey lighten-3"> 
+            <v-container class="white"> 
+                <v-card-title v-if="page === 'nutrition'" class="headline mb-4">Receitas Fit</v-card-title>
+                
+          
+
+                <v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
+                    <v-card-title class="headline">Espaguete de abobrinha(2 porções)</v-card-title>
+                    <v-card-text class="body-1">
+                        <v-card-item>
+      <v-card-title>
+    Ingredientes 
+      </v-card-title>
+    </v-card-item>
+
+    <v-col>
+    <li>Abobrinha: 2 abobrinhas</li>
+    <li>Azeite: 1 colher (sopa) de azeite</li>
+    <li>Manteiga: 1 colher (sopa) de manteiga</li>
+    <li>Cebola: 1/2 cebola</li>
+    <li>Sal: 1 colher (chá) de sal</li>
+    </v-col>
+
+    <v-card-text>
+    Molho<br>
+    <v-col>
+      <li>Tomate pelado: 1 lata de tomate pelado</li>
+        <li>Azeite: 3 colheres (sopa) de azeite</li>
+          <li>Alho: 1 dente de alho</li>
+            <li>Cebola: 1/2 cebola</li>
+              <li>Sal: 1 colher (chá) de sal</li>
+                <li>Açúcar: 1 colher (sopa) de açúcar</li>
+                  <li>Pimenta-do-reino: pimenta-do-reino a gosto</li>
+                    <li>Manteiga: 2 colheres (sopa) de manteiga</li>
+    </v-col>
+    </v-card-text>
+
+    <v-card-text>
+    Modo de preparo<br>
+    <ol>
+    <li>Em um liquidificador, bata o tomate pelado.</li>
+    <li>Em uma panela, aqueça o azeite e adicione o dente de alho e a cebola. </li>
+    <li>Acrescente o tomate batido, o sal,  o açúcar e a pimenta-do-reino a gosto. </li>
+    <li>Mexa bem e quando levantar fervura, acrescente a manteiga. </li>
+    <li>Volte a mexer para que a manteiga derreta. </li>
+    <li>Retire a cebola e o alho e sirva com o espaguete de abobrinha. </li>
+    </v-card-text>
+    </ol>
+
+    <v-img
+    class="mx-auto"
+    height="300"
+    max-width="500"
+    src="https://bad.src/not/valid"
+  >
+    <template v-slot:error>
+      <v-img
+        class="mx-auto"
+        height="300"
+        max-width="500"
+        src="./receitas-img/espaguete-abobrinha.jpg"
+      ></v-img>
+    </template>
+  </v-img>
+</v-card>
+
+
+<v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
+  <v-card-title class="headline">Bolinho de arroz com frango e aveia</v-card-title>
+  <v-card-text class="body-1">
+
+    <v-card-title>Ingredientes</v-card-title>
+    <ul>
+      <li>Batata asterix: 1 batata asterix</li>
+      <li>Arroz integral: 1 + 1/2 xícara de arroz integral cozido</li>
+      <li>Peito de frango: 1 xícara de frango desfiado</li>
+      <li>Farelo de aveia: 3 colheres (sopa) de farelo de aveia</li>
+        <li>Ovo: 1 ovo</li>
+            <li>Cheiro-verde: 3 colheres (sopa) de cheiro-verde</li>
+                <li>Pimenta-do-reino: pimenta-do-reino a gosto</li>
+                    <li>Orégano seco: 1 colher (chá) de orégano</li>
+                        <li>Queijo parmesão ralado: 1/2 xícara de parmesão ralado </li>
+    </ul>
+  </v-card-text>
+
+  <v-card-text>
+   
+    <v-card-title>Modo de preparo</v-card-title>
+    <ol>
+      <li>Em uma tigela, amasse a batata cozida.</li>
+      <li>Em uma tigela, amasse a batata cozida.</li>
+        <li>Junte o arroz integral cozido, o frango desfiado, o farelo de aveia, o ovo,  o cheiro-verde, a pimenta, o orégano e o parmesão ralado. </li>
+            <li>Misture bem até formar uma massa homogênea. </li>
+                <li>Modele os bolinhos e coloque-os em uma forma untada com azeite. </li>
+                    <li>Leve ao forno preaquecido (200° C) por cerca de 20 minutos.</li>
+    </ol>
+  </v-card-text>
+
+  <v-img
+    class="mx-auto"
+    max-height="300"  
+    max-width="100%"  
+    src="./receitas-img/bolinho-arroz-frango-aveia.JPG"
+    @error="onImageError"
+  ></v-img>
+</v-card>
+
+
+
+<v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
+                    <v-card-title class="headline">Brigadeiro fit de batata-doce (40 porções)</v-card-title>
+                    <v-card-text class="body-1">
+                        <v-card-item>
+      <v-card-title>
+    Ingredientes 
+      </v-card-title>
+    </v-card-item>
+
+    <v-col>
+      <li>Batata-doce: 500 g de batata-doce</li>
+        <li>Óleo de coco: 2 colheres (sopa) de óleo de coco</li>
+          <li>Cacau em pó: 4 colheres (sopa) de cacau em pó</li>
+            <li>Açúcar mascavo: 2 colheres (sopa) de açúcar mascavo</li>
+              <li>Leite desnatado: 50 ml leite desnatado</li>
+                <li>Café instantâneo: 1 colher (café) de café solúvel</li>
+                  <li>Chocolate meio: amargo granulado para decorar</li>
+   </v-col>
+
+
+    <v-card-text>
+      <v-card-title>Modo de preparo</v-card-title>
+    <ol>
+      <li>Cozinhe as batatas na pressão por aproximadamente 20 minutos.</li>
+        <li>Amasse-as bem.</li>
+          <li>Coloque o purê em uma panela com o cacau, açúcar, café e óleo.</li>
+            <li>Cozinhe e mexa a massa, enquanto acrescenta o leite até ficar homogêneo.</li>
+              <li>Deixar esfriar.</li>
+                <li>Enrolar e passe no chocolate meio amargo granulado.</li>
+    </v-card-text>
+    </ol>
+
+    <v-img
+    class="mx-auto"
+    height="300"
+    max-width="500"
+    src="https://bad.src/not/valid"
+  >
+    <template v-slot:error>
+      <v-img
+        class="mx-auto"
+        height="300"
+        max-width="500"
+        src="./receitas-img/brigadeiro.png"
+      ></v-img>
+    </template>
+  </v-img>
+</v-card>
+
+
+<v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
+                    <v-card-title class="headline">Massa de pizza fit</v-card-title>
+                    <v-card-text class="body-1">
+                        <v-card-item>
+      <v-card-title>
+    Ingredientes 
+      </v-card-title>
+    </v-card-item>
+
+   <v-col>
+    <li>Batata-doce: 1 batata-doce</li>
+      <li>Farinha de quinoa: 1 xícara de farinha de quinoa</li>
+        <li>Pimenta calabresa: pimenta calabresa a gosto</li>
+          <li>Alecrim: alecrim fresco a gosto</li>
+            <li>Orégano seco: orégano a gosto</li>
+              <li>Tomilho seco: tomilho a gosto</li>
+                <li>Sal: 1 colher (chá) de sal</li>
+                  <li>Azeite: 1 colher (sopa) de azeite</li>
+                </v-col>
+
+    <v-card-text>
+      <v-card-title>Modo de preparo</v-card-title>
+    <ol>
+      <li>Descasque a batata-doce, corte-a em cubinhos e cozinhe.</li>
+      <li>Amasse bem até formar um purê.</li>
+        <li>Em uma tigela grande, misture todos os ingredientes.</li>
+          <li>Misture bem até formar uma massa homogênea.</li>
+            <li>Espalhe a massa em uma forma com papel-manteiga, ela deve ficar com 1,5 cm no máximo.</li>
+              <li>Leve ao forno preaquecido (180° C) por 18 minutos.</li>
+                <li>Retire a massa do forno e deixe esfriar um pouco.</li>
+                  <li>Recheie da maneira que preferir e leve ao forno até que o queijo derreta</li>
+    </v-card-text>
+    </ol>
+
+    <v-img
+    class="mx-auto"
+    height="300"
+    max-width="500"
+    src="https://bad.src/not/valid"
+  >
+    <template v-slot:error>
+      <v-img
+        class="mx-auto"
+        height="300"
+        max-width="500"
+        src="./receitas-img/massadepizza.png"
+      ></v-img>
+    </template>
+  </v-img>
+</v-card>
+
+
+<v-row>
+      <v-col cols="12">
+        <v-card v-if="page === 'exercises'" class="mx-auto my-4 pa-4">
+          <v-card-title class="headline">
+            Informações
+          </v-card-title>
+          <v-card-text class="body-1">
+            <div>CENTRO DE ESPORTE E LAZER RUA DA CIDADANIA FAZENDINHA / PORTÃO</div>
+            <div>Endereço: R. CARLOS KLEMTZ, 1700</div>
+            <br>
+            Complemento: Rua da Cidadania Fazendinha / Portão</div>
+            <br>
+            <div>Bairro, Cidade: Fazendinha, Curitiba - PR</div>
+
+<div>Regional: Portão</div>
+
+<div>Telefone: (41) 3350-3978 / 3350-3979 Ramal: 2045</div>
+
+<div>E-mail: nucleosmeljpr@curitiba.pr.gov.br</div>
+
+<div>Site: http://curitibaemmovimento.curitiba.pr.gov.br</div>
+
+<div>Horário 08:00:00 : 11:00:00 | 2ª e 3ª e 5ª e 6ª</div>
+
+<div>Faixa etária de 16 a 100 anos</div>
+
+<div>Turma: Todos</div>
+
+<br>
+            <v-btn
+              color="primary"
+              href="https://www.google.com/maps/place/Rua+da+Cidadania+Fazendinha+-+R.+Carlos+Klemtz,+1700+-+Fazendinha,+Curitiba+-+PR,+81320-000/@-25.4779373,-49.3265337,17z/data=!3m1!4b1!4m6!3m5!1s0x94dce2fd2f83d929:0xa19ec6f1199587e9!8m2!3d-25.4779373!4d-49.3265337!16s%2Fg%2F1ptvr3xt8"
+              target="_blank"
+              class="mt-3"
+            >
+              Abrir no Google Maps
+            </v-btn>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</v-main>
+
+    `,
+    props: {
+        page: String
+    }
+});
+
+
+
+const vuetify = Vuetify.createVuetify({
+  theme: {
+    defaultTheme: 'myCustomTheme', 
+    themes: {
+      myCustomTheme: { 
+        colors: {
+          background: '#fafafa',
+          surface: '#333', 
+          primary: '#1976D2', 
+          secondary: '#424242',
+          accent: '#82B1FF', 
+          error: '#FF5252',
+          info: '#2196F3', 
+          success: '#4CAF50', 
+          warning: '#FB8C00', 
+        },
+      },
+    },
+  },
+});
+
+
+app.use(vuetify);
+
+app.mount('#app');
+
+
+    </script>
+</body>
+</html>
