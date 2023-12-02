@@ -87,10 +87,15 @@ app.component('content-page', {
             <v-container class="white"> 
                 <v-card-title v-if="page === 'nutrition'" class="headline mb-4">Receitas Fit</v-card-title>
                 
-          
-
                 <v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
-                    <v-card-title class="headline">Espaguete de abobrinha(2 porções)</v-card-title>
+                    <v-card-title class="headline">Espaguete de abobrinha</v-card-title>
+
+                    <v-card-subtitle>
+                      (Duas porções)
+      </v-card-subtitle>
+
+
+                  
                     <v-card-text class="body-1">
                         <v-card-item>
       <v-card-title>
@@ -153,7 +158,13 @@ app.component('content-page', {
 
 
 <v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
-  <v-card-title class="headline">Bolinho de arroz com frango e aveia</v-card-title>
+  <v-card-title class="headline">Bolinho de arroz</v-card-title>
+  
+  <v-card-subtitle>
+    (com frango e aveia)
+      </v-card-subtitle>
+
+
   <v-card-text class="body-1">
 
     <v-card-title>Ingredientes</v-card-title>
@@ -197,7 +208,12 @@ app.component('content-page', {
 
 
 <v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
-                    <v-card-title class="headline">Brigadeiro fit de batata-doce (40 porções)</v-card-title>
+                    <v-card-title class="headline">Brigadeiro fit</v-card-title>
+                    <v-card-subtitle>
+                      (batata-doce 40 porções)
+      </v-card-subtitle>
+                    
+                    
                     <v-card-text class="body-1">
                         <v-card-item>
       <v-card-title>
@@ -250,6 +266,7 @@ app.component('content-page', {
 
 <v-card v-if="page === 'nutrition'" class="ma-5 pa-4"> 
                     <v-card-title class="headline">Massa de pizza fit</v-card-title>
+
                     <v-card-text class="body-1">
                         <v-card-item>
       <v-card-title>
